@@ -1,7 +1,6 @@
 {
   "name": "todolist",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,8 +9,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "pg": "^8.3.0",
     "sequelize": "^6.3.4",
     "sequelize-cli": "^6.2.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/team-cake/todolist.git"
+  },
+  "bugs": {
+    "url": "https://github.com/team-cake/todolist/issues"
+  },
+  "homepage": "https://github.com/team-cake/todolist#readme",
+  "description": ""
 }

@@ -40,6 +40,13 @@ module.exports = {
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
+				{
+					name: 'Kelley',
+					email: 'kelley@teacher.com',
+					phone: 9876543,
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
 			],
 			{}
 		)

@@ -6,8 +6,8 @@ module.exports = {
 			'todoLists',
 			[
 				{
-					name: "Karla's Fun stuff",
-					userId: '1',
+					name: "Kelley's Fun stuff",
+					userId: '6',
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},

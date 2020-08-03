@@ -7,38 +7,37 @@ module.exports = {
 			[
 				{
 					name: "Karla's Fun stuff",
-					userId: '26',
+					userId: '1',
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
 					name: "Karla's Serious stuff",
-
-					userId: '26',
+					userId: '1',
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
 					name: "Rein's thing",
-					userId: '27',
+					userId: '5',
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
 					name: "David's Games",
-					userId: '28',
+					userId: '4',
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
 					name: 'Day of Jeroen with pien and diva',
-					userId: '29',
+					userId: '2',
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
 					name: 'Dia de la Matias',
-					userId: '30',
+					userId: '3',
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},

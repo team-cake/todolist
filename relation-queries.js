@@ -9,16 +9,16 @@ const { user, todoItem, todoList, tag } = require('./models')
 
 // listsWithUsers().then((lists) => console.log(lists))
 
-async function getUsers() {
-	const allUsers = await user.findAll({
-		include: { model: todoList, attributes: ['name'] },
-	})
-	// return allUsers.map((user) => user.get({ plain: true }))
-    return allUsers.map((user) => user.get({ plain: true }).todoLists)
-    // not good code!!
-}
+// async function getUsers() {
+// 	const allUsers = await user.findAll({
+// 		include: { model: todoList, attributes: ['name'] },
+// 	})
+// 	// return allUsers.map((user) => user.get({ plain: true }))
+//     return allUsers.map((user) => user.get({ plain: true }).todoLists)
+//     // not good code!!
+// }
 
-getUsers().then((users) => console.log(users))
+// getUsers().then((users) => console.log(users))
 
 // async function getUserWithList(id) {
 //     const result = await user.findByPk(id, { include: [todoList] });
@@ -55,8 +55,10 @@ getUsers().then((users) => console.log(users))
 // Many to many query
 
 async function itemsWithTags() {
-	const items = await todoItem.findAll({ include: [tag] })
-	return items.map((item) => item.get({ plain: true }))
+  const items = await todoItem.findAll({ include: [tag] })
+  return items.map((item) => item.get({ plain: true }))
+  // return items.map((item) => item.get({ plain: true }).tags[0].itemTags)
+  // pretty good code
 }
 
 itemsWithTags().then((items) => console.log('items with tags', items))

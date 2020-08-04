@@ -1,7 +1,11 @@
 const express = require('express')
 const { res } = require('express')
 const app = express()
-const PORT = 4000
+
+const cors = require("cors");
+app.use(cors());
+
+const PORT = process.env.PORT || 4000
 
 const User = require('./models').user
 const TodoList = require('./models').todoList

@@ -1,10 +1,10 @@
 const express = require('express')
-const { response } = require('express')
+const { res } = require('express')
 const app = express()
 const PORT = 4000
 
 const User = require('./models').user
-const Todolist = require('./models').todolist
+const TodoList = require('./models').todoList
 
 app.use(express.json())
 
@@ -41,6 +41,35 @@ app.put('/users/:userId', async (req, res, next) => {
 		} else {
 			const updatedUser = await userToUpdate.update(req.body)
 			res.json(updatedUser)
+		}
+	} catch (e) {
+		next(e)
+	}
+})
+
+app.get('/todoLists', async (req, res, next) => {
+	const todoLists = await TodoList.findAll()
+	res.json(todoLists)
+})
+
+app.post('/todoLists', async (req, res, next) => {
+	try {
+		const todoLists = await TodoList.create(req.body)
+		res.json(todoLists)
+	} catch (e) {
+		next(e)
+	}
+})
+
+app.put('/todoLists/:todoListId', async (req, res, next) => {
+	try {
+		const todoListId = parseInt(req.params.todoListId)
+		const todoListToUpdate = await TodoList.findByPk(todoListId)
+		if (!todoListToUpdate) {
+			res.status(404).send('List not found')
+		} else {
+			const updatedtodoList = await todoListToUpdate.update(req.body)
+			res.json(updatedtodoList)
 		}
 	} catch (e) {
 		next(e)

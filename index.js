@@ -131,7 +131,37 @@ app.put('/users/:userId/lists/:listId', async (req, res, next) => {
 	}
 })
 
+// Delete a user's list
+app.delete('/users/:userId/lists/:listId', async (req, res, next) => {
+	try {
+		const listId = parseInt(req.params.listId)
+		const toDelete = await TodoList.findByPk(listId)
+		if (toDelete) {
+			const deleted = await toDelete.destroy()
+			res.json(deleted)
+		} else {
+			res.status(404).send('List not found')
+		}
+	} catch (e) {
+		next(e)
+	}
+})
 
+// Delete user's all lists
+app.delete('/users/:userId/lists', async (req, res, next) => {
+	try {
+		const userId = parseInt(req.params.userId)
+		const user = await User.findByPk(userId, { include: [TodoList] })
+		if (user) {
+			user.todoLists.forEach(async (list) => await list.destroy())
+			res.status(204).send()
+		} else {
+			res.status(404).send('User not found')
+		}
+	} catch (e) {
+		next(e)
+	}
+})
 
 function onListen() {
 	console.log(`Let's listen to :${PORT}`)

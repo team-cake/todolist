@@ -168,7 +168,7 @@ app.delete('/users/:userId/lists', async (req, res, next) => {
 })
 
 function onListen() {
-	console.log(`Let's listen to :${PORT}`)
+	console.log(`Hello, let's listen to :${PORT}`)
 }
 
 app.listen(PORT, onListen)

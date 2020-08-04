@@ -1,4 +1,5 @@
 const express = require('express')
+const { response } = require('express')
 const app = express()
 const PORT = 4000
 
@@ -6,11 +7,8 @@ const User = require('./models').user
 
 app.use(express.json())
 
-app.post('/echo', (req, res) => {
-	res.json(req.body)
-})
 
-app.post('/users', async (req, res, next) => {
+app.post('/users', async (req, res) => {
 	try {
 		const email = req.body.email
 		if (!email || email === ' ') {
@@ -23,6 +21,16 @@ app.post('/users', async (req, res, next) => {
 		next(e)
 	}
 })
+
+app.get("/users/:userId", async (req, res) => {
+	const userId = parseInt(req.params.userId);
+	const user = await User.findByPk(userId);
+	if (!user) {
+	  res.status(404).send("User not found");
+	} else {
+	  res.send(user);
+	}
+  });
 
 function onListen() {
 	console.log(`Let's listen to :${PORT}`)

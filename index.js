@@ -2,8 +2,8 @@ const express = require('express')
 const { res } = require('express')
 const app = express()
 
-const cors = require("cors");
-app.use(cors());
+const cors = require('cors')
+app.use(cors())
 
 const PORT = process.env.PORT || 4000
 
@@ -129,6 +129,22 @@ app.put('/users/:userId/lists/:listId', async (req, res, next) => {
 			res.json(updated)
 		} else {
 			res.status(404).send('List not found')
+		}
+	} catch (e) {
+		next(e)
+	}
+})
+
+// delete a user
+app.delete('/users/:userId', async (req, res, next) => {
+	try {
+		const userId = parseInt(req.params.userId)
+		const toDelete = await User.findByPk(userId)
+		if (toDelete) {
+			const deleted = await toDelete.destroy()
+			res.json(deleted)
+		} else {
+			res.status(404).send('User not found')
 		}
 	} catch (e) {
 		next(e)

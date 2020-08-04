@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 4000
 
 const User = require('./models').user
 const TodoList = require('./models').todoList
+const TodoItem = require('./models').todoItem
 
 app.use(express.json())
 
@@ -48,6 +49,38 @@ app.put('/users/:userId', async (req, res, next) => {
 		} else {
 			const updatedUser = await userToUpdate.update(req.body)
 			res.json(updatedUser)
+		}
+	} catch (e) {
+		next(e)
+	}
+})
+
+// get todoitems
+app.get('/todoItems', async (req, res, next) => {
+	const todoItems = await TodoItem.findAll()
+	res.json(todoItems)
+})
+
+// create todoitems
+app.post('/todoitems', async (req, res, next) => {
+	try {
+		const todoItems = await TodoItem.create(req.body)
+		res.json(todoItems)
+	} catch (e) {
+		next(e)
+	}
+})
+
+// update todolists
+app.put('/todoitems/:todoItemsId', async (req, res, next) => {
+	try {
+		const todoItemsId = parseInt(req.params.todoItemsId)
+		const todoItemsToUpdate = await TodoItem.findByPk(todoItemsId)
+		if (!todoItemsToUpdate) {
+			res.status(404).send('Item not found')
+		} else {
+			const updatedtodoItems = await todoItemsToUpdate.update(req.body)
+			res.json(updatedtodoItems)
 		}
 	} catch (e) {
 		next(e)
